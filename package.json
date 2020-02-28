@@ -4,7 +4,7 @@
   "description": "A library for SVG flow chart diagrams.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel ./public/index.html"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "svg.js": "^2.7.1"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.8.2"
   }
 }

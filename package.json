@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Himself65/flowviz/issues"
   },
-  "homepage": "https://github.com/Himself65/flowviz#readme"
+  "homepage": "https://github.com/Himself65/flowviz#readme",
+  "dependencies": {
+    "svg.js": "^2.7.1"
+  }
 }

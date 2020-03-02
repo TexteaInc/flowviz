@@ -1,9 +1,9 @@
 import { Container, Rect } from '@svgdotjs/svg.js'
 
 import { ShapeViewBox } from '../common/type'
-import Node from '../item/node'
+import { Node } from '../item'
 
-class Start extends Node {
+export class Start extends Node {
   constructor (public viewBox: ShapeViewBox) {
     super(viewBox)
   }
@@ -15,5 +15,3 @@ class Start extends Node {
     })
   }
 }
-
-export default Start

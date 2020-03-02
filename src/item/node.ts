@@ -8,6 +8,7 @@ export abstract class Node {
   viewBox: ShapeViewBox
   offsetX: number = 0
   offsetY: number = 0
+  circleGroup: Container;
 
   protected constructor (viewBox: ShapeViewBox) {
     this.viewBox = viewBox
@@ -26,13 +27,14 @@ export abstract class Node {
     }
     this.addDot(group)
     this.bindEvent(group)
+    group.css('cursor', 'move')
     return group
   }
 
   addDot (container: Container): Element {
     const screwOffset = this.screw ? this.screw / 2 : 0
 
-    const group = container.group()
+    this.circleGroup = container.group()
     const x1 = this.viewBox.x
     const y1 = this.viewBox.y - this.viewBox.height / 2
     const topCircle: ArrayXY = [x1, y1]
@@ -49,11 +51,11 @@ export abstract class Node {
     const y4 = this.viewBox.y
     const leftCircle: ArrayXY = [x4, y4]
 
-    this.renderDot(group, topCircle)
-    this.renderDot(group, rightCircle)
-    this.renderDot(group, bottomCircle)
-    this.renderDot(group, leftCircle)
-    return group
+    this.renderDot(this.circleGroup, topCircle)
+    this.renderDot(this.circleGroup, rightCircle)
+    this.renderDot(this.circleGroup, bottomCircle)
+    this.renderDot(this.circleGroup, leftCircle)
+    return this.circleGroup.hide()
   }
 
   private renderDot (container: Container, xy: ArrayXY): Element {
@@ -61,7 +63,7 @@ export abstract class Node {
     const [x, y] = xy
     return circle.fill('#fff').move(x, y).center(x, y).attr({
       strokeWidth: 1,
-      stroke: '#000'
+      stroke: '#0b0'
     })
   }
 
@@ -72,6 +74,12 @@ export abstract class Node {
   }
 
   bindEvent (element: Element) {
+    element.on('mouseover', (event: MouseEvent) => {
+      this.circleGroup.show()
+    })
+    element.on('mouseout', (event: MouseEvent) => {
+      this.circleGroup.hide()
+    })
     if (this.viewBox.isDraggable) {
       element.attr('draggable', true)
       element.on('mousedown', (event: MouseEvent) => {
@@ -85,7 +93,6 @@ export abstract class Node {
         if (this.dragging) {
           element.move(event.pageX + this.offsetX, event.pageY + this.offsetY).center(event.pageX + this.offsetX, event.pageY + this.offsetY)
           console.info('dragging', event)
-          element.css('cursor', 'move')
         }
       })
       element.on('mouseup', (event: MouseEvent) => {

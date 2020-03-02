@@ -1,9 +1,9 @@
 import { Container, Rect } from '@svgdotjs/svg.js'
 
 import { ShapeViewBox } from '../common/type'
-import Node from '../item/node'
+import { Node } from '../item/node'
 
-class Start extends Node {
+export class Start extends Node {
   dragging: boolean = false;
 
   constructor (public viewBox: ShapeViewBox) {
@@ -36,5 +36,3 @@ class Start extends Node {
     return element
   }
 }
-
-export default Start

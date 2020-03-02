@@ -1,6 +1,6 @@
 import { Container, Element, SVG } from '@svgdotjs/svg.js'
 
-import Node from '../item/node'
+import { Node } from '../item/node'
 
 class Canvas {
   svgElementId = '#svg-container'

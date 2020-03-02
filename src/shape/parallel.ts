@@ -1,9 +1,9 @@
 import { ArrayXY, Container, Polygon } from '@svgdotjs/svg.js'
 
 import { ShapeViewBox } from '../common/type'
-import Node from '../item/node'
+import { Node } from '../item/node'
 
-class Parallel extends Node {
+export class Parallel extends Node {
   screw: number = 20;
 
   constructor (public viewBox: ShapeViewBox) {
@@ -22,5 +22,3 @@ class Parallel extends Node {
     })
   }
 }
-
-export default Parallel

@@ -1,9 +1,9 @@
 import { ArrayXY, Container, PointArray, Polygon } from '@svgdotjs/svg.js'
 
 import { ShapeViewBox } from '../common/type'
-import Node from '../item/node'
+import { Node } from '../item/node'
 
-class Condition extends Node {
+export class Condition extends Node {
   constructor (public viewBox: ShapeViewBox) {
     super(viewBox)
   }
@@ -20,5 +20,3 @@ class Condition extends Node {
     })
   }
 }
-
-export default Condition

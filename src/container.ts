@@ -33,7 +33,7 @@ export class Container {
   }
 
   public addItem<T extends Node> (item: Node) {
-    item.addTo(this.#root)
+    item.addToContainer(this.#root)
     this.#items.push(item)
   }
 }

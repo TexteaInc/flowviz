@@ -4,4 +4,8 @@ interface ViewBoxOperation {
   isDraggable?: boolean
 }
 
-export type ShapeViewBox = ViewBoxOperation & Pick<ViewBox, 'x' | 'y' | 'width' | 'height'>;
+interface ViewBoxProps {
+  text?: string
+}
+
+export type ShapeViewBox = ViewBoxProps & ViewBoxOperation & Pick<ViewBox, 'x' | 'y' | 'width' | 'height'>;

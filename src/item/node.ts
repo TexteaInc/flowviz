@@ -32,7 +32,9 @@ export abstract class Node {
   }
 
   addText (container: Container, text: string): Element {
-    return container.text(text).move(this.viewBox.width / 2, this.viewBox.height / 2).center(this.viewBox.width / 2, this.viewBox.height / 2)
+    const x = this.viewBox.x + this.viewBox.width / 2
+    const y = this.viewBox.y + this.viewBox.height / 2
+    return container.text(text).move(x, y).center(x, y)
   }
 
   bindEvent (element: Element) {

@@ -1,3 +1,9 @@
 import { Point, ViewBox } from '@svgdotjs/svg.js'
 
-export type ShapeViewBox = Pick<ViewBox, 'x' | 'y' | 'width' | 'height'>;
+
+
+interface ViewBoxOperation {
+  isDraggable?: boolean;
+}
+
+export type ShapeViewBox = ViewBoxOperation & Pick<ViewBox, 'x' | 'y' | 'width' | 'height'>;

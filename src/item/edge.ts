@@ -1,3 +1,3 @@
-export default class Edge {
+export class Edge {
 
 }

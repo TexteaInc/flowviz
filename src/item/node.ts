@@ -2,6 +2,15 @@ import { ArrayXY, Container, Element } from '@svgdotjs/svg.js'
 
 import { ShapeViewBox } from '../common/type'
 
+interface CirclePointProp {
+  top: ArrayXY
+  right: ArrayXY
+  bottom: ArrayXY
+  left: ArrayXY
+}
+
+export type CirclePointType = keyof CirclePointProp
+
 export abstract class Node {
   dragging: boolean = false
   screw: number = 0
@@ -9,6 +18,7 @@ export abstract class Node {
   offsetX: number = 0
   offsetY: number = 0
   circleGroup: Container;
+  circlePoint: CirclePointProp;
 
   protected constructor (viewBox: ShapeViewBox) {
     this.viewBox = viewBox
@@ -18,6 +28,7 @@ export abstract class Node {
 
   addToContainer (container: Container): Element {
     const group = container.group()
+    this.bindEvent(group)
     this.addTo(group).move(this.viewBox.x, this.viewBox.y).center(this.viewBox.x, this.viewBox.y).attr({
       fill: '#fff',
       stroke: '#000'
@@ -26,7 +37,7 @@ export abstract class Node {
       this.addText(group, this.viewBox.text)
     }
     this.addDot(group)
-    this.bindEvent(group)
+
     group.css('cursor', 'move')
     return group
   }
@@ -37,24 +48,27 @@ export abstract class Node {
     this.circleGroup = container.group()
     const x1 = this.viewBox.x
     const y1 = this.viewBox.y - this.viewBox.height / 2
-    const topCircle: ArrayXY = [x1, y1]
+    const top: ArrayXY = [x1, y1]
 
     const x2 = this.viewBox.x + this.viewBox.width / 2 - screwOffset
     const y2 = this.viewBox.y
-    const rightCircle: ArrayXY = [x2, y2]
+    const right: ArrayXY = [x2, y2]
 
     const x3 = this.viewBox.x
     const y3 = this.viewBox.y + this.viewBox.height / 2
-    const bottomCircle: ArrayXY = [x3, y3]
+    const bottom: ArrayXY = [x3, y3]
 
     const x4 = this.viewBox.x - this.viewBox.width / 2 + screwOffset
     const y4 = this.viewBox.y
-    const leftCircle: ArrayXY = [x4, y4]
+    const left: ArrayXY = [x4, y4]
 
-    this.renderDot(this.circleGroup, topCircle)
-    this.renderDot(this.circleGroup, rightCircle)
-    this.renderDot(this.circleGroup, bottomCircle)
-    this.renderDot(this.circleGroup, leftCircle)
+    this.renderDot(this.circleGroup, top)
+    this.renderDot(this.circleGroup, right)
+    this.renderDot(this.circleGroup, bottom)
+    this.renderDot(this.circleGroup, left)
+
+    this.circlePoint = { top, right, bottom, left }
+
     return this.circleGroup.hide()
   }
 

@@ -1,6 +1,6 @@
 import { Container, Element, SVG } from '@svgdotjs/svg.js'
 
-import { Node } from '../item/node'
+import { CirclePointType, Node } from '../item/node'
 
 class Canvas {
   svgElementId = '#svg-container'
@@ -16,6 +16,14 @@ class Canvas {
   add (node: Node): Element {
     const element = node.addTo(this.container)
     return element
+  }
+
+  link (sourceNode: Node, sourceType: CirclePointType, targetNode: Node, targetType: CirclePointType) {
+    this.container.line(sourceNode.circlePoint[sourceType][0], sourceNode.circlePoint[sourceType][1], targetNode.circlePoint[targetType][0], targetNode.circlePoint[targetType][1]).stroke({
+      color: '#f06',
+      width: 10,
+      linecap: 'round'
+    })
   }
 }
 

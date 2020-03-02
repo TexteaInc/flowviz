@@ -1,6 +1,6 @@
 import { SVG, Svg } from '@svgdotjs/svg.js'
 
-import { Node } from './item'
+import { CirclePointType, Node } from './item'
 
 interface ContainerConfiguration {
   element: HTMLElement
@@ -35,5 +35,12 @@ export class Container {
   public addItem<T extends Node> (item: Node) {
     item.addToContainer(this.#root)
     this.#items.push(item)
+  }
+
+  public link<T extends Node> (sourceNode: Node, sourceType: CirclePointType, targetNode: Node, targetType: CirclePointType) {
+    this.#root.line(sourceNode.circlePoint[sourceType][0], sourceNode.circlePoint[sourceType][1], targetNode.circlePoint[targetType][0], targetNode.circlePoint[targetType][1]).stroke({
+      color: '#000',
+      width: 1
+    })
   }
 }

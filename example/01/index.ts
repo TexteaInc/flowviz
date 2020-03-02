@@ -1,3 +1,5 @@
+import '../../src/theme/light.css'
+
 import { Condition, Container, End, Parallel, Start } from '../../src'
 
 const container = new Container({

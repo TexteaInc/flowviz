@@ -14,9 +14,6 @@ export class Condition extends Node {
     const topPoint: ArrayXY = [this.viewBox.x + this.viewBox.width / 2, this.viewBox.y]
     const bottomPoint: ArrayXY = [this.viewBox.x + this.viewBox.width / 2, this.viewBox.y + this.viewBox.height]
     const pointArray: ArrayXY[] = [leftPoint, topPoint, rightPoint, bottomPoint]
-    return container.polygon(pointArray).fill('#fff').stroke({
-      width: 1,
-      color: '#000'
-    })
+    return container.polygon(pointArray)
   }
 }

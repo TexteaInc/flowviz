@@ -16,9 +16,6 @@ export class Parallel extends Node {
     const rightBottomPoint: ArrayXY = [this.viewBox.x + this.viewBox.width - this.screw, this.viewBox.y + this.viewBox.height]
     const letBottomPoint: ArrayXY = [this.viewBox.x, this.viewBox.y + this.viewBox.height]
     const pointArray: ArrayXY[] = [leftTopPoint, rightTopPoint, rightBottomPoint, letBottomPoint]
-    return container.polygon(pointArray).fill('#fff').stroke({
-      width: 1,
-      color: '#000'
-    })
+    return container.polygon(pointArray)
   }
 }

@@ -9,10 +9,7 @@ export class Start extends Node {
   }
 
   addTo (container: Container): Rect {
-    const element = container.rect(this.viewBox.width, this.viewBox.height).radius(5).move(this.viewBox.x, this.viewBox.y).attr({
-      fill: '#fff',
-      stroke: '#000'
-    })
+    const element = container.rect(this.viewBox.width, this.viewBox.height).radius(5)
     return element
   }
 }
